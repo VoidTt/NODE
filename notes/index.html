@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Менеджер заметок</title>
+</head>
+
+
+<style>
+    *{
+        background-color: #008f88;
+    }
+    #stats{
+            background-color: rgba(153, 111, 111, 0.692);
+        }
+    #content{
+        color:  coral;
+    }
+    .menu-buttons button{
+        color: rgb(48, 1, 219);
+    }
+</style>
+<body>
+    <div id="stats"> </div>
+    <div>
+        <button onclick='showNotes()'> Показать заметки</button>
+        <button onclick='addNote()'> Добавить заметку</button>
+        <button onclick='deleteNote()'> Удалить заметку</button>
+        <button onclick='editNote()'>Редактировать заметку</button>
+    </div>
+    <div id="content"> </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
