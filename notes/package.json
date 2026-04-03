@@ -1,0 +1,16 @@
+{
+    "name": "book-note",
+    "version": "1.0.0",
+    "description": "Консольное приложение для заметок",
+    "main": "index.js",
+    "type": "module",
+    "scripts": {
+        "start": "node index.js",
+        "dev": "node --watch index.js",
+        "build": "echo 'Сборка не требуется'",
+        "test": "echo 'Тесты не настроены'"
+    },
+    "keywords": ["notes", "console", "app"],
+    "author": "", 
+    "license": "ISC"
+}

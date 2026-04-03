@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users</title>
+    <style>
+        body {
+            background-color: #0f0f0f;
+            color: whitesmoke;
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .form-container {
+            background-color: #1e1e1e;
+            padding: 2rem;
+            border-radius: 8px;
+            width: 300px;
+            text-align: center;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #2c2c2c;
+            border: 1px solid #444;
+            color: white;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #d64113;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .link {
+            color: #2e8b57;
+            margin-top: 15px;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        .error {
+            color: #49a82c;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div id="loginDiv">
+            <input type="text" id="username" placeholder="Имя пользователя">
+            <input type="password" id="password" placeholder="Пароль">
+            <button onclick="login()">Войти</button>
+            <div class="link" onclick="showReg()">Регистрация</div>
+            <div id="loginError" class="error"></div>
+        </div>
+
+        <div id="regDiv" style="display:none">
+            <input type="text" id="regUser" placeholder="Имя пользователя">
+            <input type="password" id="regPass" placeholder="Пароль">
+            <button onclick="register()">Зарегистрироваться</button>
+            <div class="link" onclick="showLogin()">Вход</div>
+            <div id="regError" class="error"></div>
+        </div>
+    </div>
+
+    <script>
+        async function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('loginError');
+            errorDiv.innerText = '';
+
+            try {
+                const res = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+                const data = await res.json();
+                if (data.success) {
+                    localStorage.setItem('userId', data.userId);
+                    localStorage.setItem('username', data.username);
+                    window.location.href = '/';
+                } else {
+                    errorDiv.innerText = data.message || 'Ошибка входа';
+                }
+            } catch (err) {
+                errorDiv.innerText = 'Ошибка соединения с серверомs';
+            }
+        }
+
+        async function register() {
+            const username = document.getElementById('regUser').value;
+            const password = document.getElementById('regPass').value;
+            const errorDiv = document.getElementById('regError');
+            errorDiv.innerText = '';
+
+            try {
+                const res = await fetch('/api/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+                const data = await res.json();
+                if (data.success) {
+                    alert('Регистрация успешна! Теперь войдите.');
+                    showLogin();
+                } else {
+                    errorDiv.innerText = data.message || 'Ошибка регистрации';
+                }
+            } catch (err) {
+                errorDiv.innerText = 'Ошибка соединения с сервером';
+            }
+        }
+
+        function showReg() {
+            document.getElementById('loginDiv').style.display = 'none';
+            document.getElementById('regDiv').style.display = 'block';
+        }
+
+        function showLogin() {
+            document.getElementById('regDiv').style.display = 'none';
+            document.getElementById('loginDiv').style.display = 'block';
+            document.getElementById('regError').innerText = '';
+            document.getElementById('loginError').innerText = '';
+        }
+    </script>
+</body>
+</html>
