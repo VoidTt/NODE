@@ -2,7 +2,7 @@
   "name": "test",
   "version": "1.0.0",
   "manifest_version": 3,
-  "icons": {
+  "images": {
     "128": "image/trt.png"
   },
   "action": {
