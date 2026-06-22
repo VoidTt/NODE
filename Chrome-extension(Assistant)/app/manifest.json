@@ -1,0 +1,40 @@
+{
+  "name": "My Assistant",
+  "description": "Мой ассистент для Chrome",
+  "version": "1.0.0",
+  "manifest_version": 3,
+
+  "images": {
+    "128": "images/128.jpg"
+  },
+
+  "action": {
+    "default_popup": "assist_src/index.html"
+  },
+
+  "permissions": [
+    "storage",
+    "scripting",
+    "activeTab",
+    "downloads",
+    "tabs"
+  ],
+
+  "host_permissions": [
+    "<all_urls>"
+  ],
+
+  "background": {
+    "service_worker": "assist_src/background.js"
+  },
+
+  "web_accessible_resources": [
+  {
+    "resources": [
+      "func_src/*.js",
+      "func_src/registry.js"
+    ],
+    "matches": ["<all_urls>"]
+  }
+]
+}
