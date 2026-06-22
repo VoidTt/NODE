@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FASTIFY</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="container">
+    <h1>Fastify Text Tool</h1>
+
+    <input type="text" id="input-text" placeholder="Введите текст">
+
+    <div class="buttons">
+      <button onclick="sendText('palindrome')" id="sendBtn">Палиндром</button>
+      <button onclick="sendText('reverse')" id="reverseBtn">Перевернуть</button>
+      <button onclick="sendText('stats')" id="statsBtn">Статистика</button>
+    </div>
+
+    <div id="result"></div>
+  </main>
+
+  <script src="./api.js"></script>
+</body>
+</html>
