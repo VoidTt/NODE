@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="popup.css" />
+  <title>Images Loader</title>
+</head>
+<body>
+  <main class="popup">
+    <header class="topbar">
+      <div class="badge">🖼️ Extension</div>
+      <h1>Images Loader</h1>
+      <p>Сканирует активную страницу и позволяет скачать найденные изображения.</p>
+    </header>
+
+    <section class="controls">
+      <button id="load-btn" class="btn btn-primary">Сканировать страницу</button>
+      <div id="loader" class="status hidden">Идёт поиск изображений…</div>
+      <button id="download-all-btn" class="btn btn-success hidden">💾 Скачать все</button>
+    </section>
+
+    <section id="images-container" class="images"></section>
+  </main>
+
+  <script src="popup_save.js"></script>
+</body>
+</html>
